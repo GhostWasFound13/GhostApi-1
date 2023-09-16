@@ -8,7 +8,7 @@ function getRandomGIF(folder) {
   const files = fs.readdirSync(folder).filter(file => file.endsWith('.gif'));
   const randomIndex = Math.floor(Math.random() * files.length);
   const randomGIF = files[randomIndex];
-  return path.join(folder, randomGIF); // Use path.join to create an absolute path
+  return path.join(__dirname, folder, randomGIF); // Use __dirname to create an absolute path
 }
 // Array of random facts
 const randomFacts = [
