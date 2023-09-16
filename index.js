@@ -3,18 +3,18 @@ const app = express();
 const port = process.env.PORT || 3000;
 const fs = require('fs');
 
-// Function to get a random image file from a folder
-function getRandomImage(folder) {
-  const files = fs.readdirSync(folder);
+// Function to get a random GIF file from a folder
+function getRandomGIF(folder) {
+  const files = fs.readdirSync(folder).filter(file => file.endsWith('.gif'));
   const randomIndex = Math.floor(Math.random() * files.length);
-  const randomImage = files[randomIndex];
-  return `${folder}/${randomImage}`;
+  const randomGIF = files[randomIndex];
+  return `${folder}/${randomGIF}`;
 }
 
 // Define folders for each action
 const actionFolders = {
-  slap: './slap_images',
-  hug: './hug_images',
+  slap: './public/slap_gifs',
+  hug: './public/hug_gifs',
   // Add more actions and their folders as needed
 };
 
@@ -24,14 +24,14 @@ app.get('/', (req, res) => {
 
 // Endpoint for the /slap action
 app.get('/slap', (req, res) => {
-  const randomImage = getRandomImage(actionFolders.slap);
-  res.sendFile(randomImage);
+  const randomGIF = getRandomGIF(actionFolders.slap);
+  res.sendFile(randomGIF);
 });
 
 // Endpoint for the /hug action
 app.get('/hug', (req, res) => {
-  const randomImage = getRandomImage(actionFolders.hug);
-  res.sendFile(randomImage);
+  const randomGIF = getRandomGIF(actionFolders.hug);
+  res.sendFile(randomGIF);
 });
 
 app.listen(port, () => {
