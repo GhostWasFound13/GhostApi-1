@@ -11,6 +11,21 @@ function getRandomGIF(folder) {
   return `${folder}/${randomGIF}`;
 }
 
+// Array of random facts
+const randomFacts = [
+  'Bananas are berries, but strawberries are not.',
+  'Honey never spoils; archaeologists have found pots of honey in ancient Egyptian tombs that are over 3,000 years old and still perfectly edible.',
+  'Octopuses have three hearts.',
+  'The Eiffel Tower can be 15 cm taller during the summer due to the expansion of the iron it is made of.',
+  // Add more random facts as needed
+];
+
+// Function to get a random fact
+function getRandomFact() {
+  const randomIndex = Math.floor(Math.random() * randomFacts.length);
+  return randomFacts[randomIndex];
+}
+
 // Define folders for each action
 const actionFolders = {
   slap: './public/slap_gifs',
@@ -19,7 +34,7 @@ const actionFolders = {
 };
 
 app.get('/', (req, res) => {
-  res.send('Welcome to the Anime Action API!');
+  res.send('Welcome to the Anime Action and Random Facts API!');
 });
 
 // Endpoint for the /slap action
@@ -32,6 +47,12 @@ app.get('/slap', (req, res) => {
 app.get('/hug', (req, res) => {
   const randomGIF = getRandomGIF(actionFolders.hug);
   res.sendFile(randomGIF);
+});
+
+// Endpoint for a random fact
+app.get('/randomfact', (req, res) => {
+  const randomFact = getRandomFact();
+  res.send(randomFact);
 });
 
 app.listen(port, () => {
