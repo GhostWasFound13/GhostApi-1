@@ -2,15 +2,14 @@ const express = require('express');
 const app = express();
 const port = process.env.PORT || 3000;
 const fs = require('fs');
-
+const path = require('path'); // Import the 'path' module
 // Function to get a random GIF file from a folder
 function getRandomGIF(folder) {
   const files = fs.readdirSync(folder).filter(file => file.endsWith('.gif'));
   const randomIndex = Math.floor(Math.random() * files.length);
   const randomGIF = files[randomIndex];
-  return `${folder}/${randomGIF}`;
+  return path.join(folder, randomGIF); // Use path.join to create an absolute path
 }
-
 // Array of random facts
 const randomFacts = [
   'Bananas are berries, but strawberries are not.',
