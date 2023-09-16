@@ -27,8 +27,8 @@ function getRandomFact() {
 
 // Define folders for each action
 const actionFolders = {
-  slap: './public/slap_gifs',
-  hug: './public/hug_gifs',
+  slap: './public/slap',
+  hug: './public/hug',
   // Add more actions and their folders as needed
 };
 
